@@ -3,6 +3,7 @@ package com.banana.bananawhatsapp.modelos;
 import com.banana.bananawhatsapp.exceptions.UsuarioException;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -10,11 +11,20 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @ToString
+@Entity
+@Table(name = "usuario")
 public class Usuario {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nombre;
+
     private String email;
+
     private LocalDate alta;
+
     private boolean activo;
 
     private boolean validarNombre() {
