@@ -1,13 +1,9 @@
 package com.banana.services;
 
 import com.banana.models.Student;
-import com.banana.persistence.StudentsRepositoryInf;
+import com.banana.persistence.student.StudentsRepositoryInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class StudentsService implements IStudentService {
@@ -19,7 +15,6 @@ public class StudentsService implements IStudentService {
     }
 
     @Override
-//    @Transactional()
     public boolean storeStudent(Student student) throws Exception{
         if (student.isValid()) {
             repository.add(student);
@@ -37,22 +32,5 @@ public class StudentsService implements IStudentService {
     public Student getStudentById(Long id)  throws Exception{
         if (id > 0) return repository.getById(id);
         else return null;
-    }
-
-    @Override
-    @Transactional()
-    public boolean storeStudentList(List<Student> students) throws Exception {
-        int i = 1;
-        for (Student aStd : students) {
-            if (aStd.isValid()) {
-                System.out.println("**** Procesando estudiante: " + i);
-                repository.add(aStd);
-            } else {
-                System.out.println("**** !!!Estudiante no válido:" + aStd);
-//                throw new Exception("Estudiante no válido:" + aStd);
-            }
-            i++;
-        }
-        return true;
     }
 }

@@ -1,16 +1,14 @@
-package com.banana.persistence;
+package com.banana.persistence.student;
 
 import com.banana.models.Student;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.sql.SQLException;
 import java.util.List;
 
 @Setter
@@ -18,18 +16,17 @@ import java.util.List;
 @Repository
 public class StudentsRepositoryJPA implements StudentsRepositoryInf {
 
-    @PersistenceContext  // Accede al emf; emf.createEntityManager();
+    @PersistenceContext(unitName = "school-mysql")
     private EntityManager em;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void add(Student estudiante) throws SQLException {
-        if (estudiante.isValid()) em.persist(estudiante);
-        else throw new SQLException("Estudiante no válido:" + estudiante);
+    @Transactional("transactionManagerMysql")
+    public void add(Student estudiante) {
+        em.persist(estudiante);
     }
 
     @Override
-    @Transactional
+    @Transactional("transactionManagerMysql")
     public Student update(Student estudiante) {
         if (estudiante.isValid()) {
             Student aStd = em.find(Student.class, estudiante.getId());

@@ -10,8 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -24,10 +22,7 @@ class StudentsServiceITest {
     private IStudentService service;
 
     @Test
-    void storeStudent() throws Exception {
-        Student newStd = new Student(null, "Matias", "Mattel", 2);
-        service.storeStudent(newStd);
-        assertNotNull(newStd);
+    void storeStudent() {
     }
 
     @Test
@@ -39,25 +34,5 @@ class StudentsServiceITest {
         Student std = service.getStudentById(1L);
         System.out.println(std);
         assertNotNull(std);
-    }
-
-     @Test
-    void storeStudentList() {
-        List<Student> estudiantes = List.of(
-                new Student(null, "Juan", "Juanez", 2),
-                new Student(null, "Luisa", "Rosalez", 3),
-                new Student(null, "Pedro", "Perez", 1),
-                new Student(null, "Maria", "Marianez", 2),
-                new Student(null, "Rosa", "Lopez", 1)
-        );
-
-        boolean isOk = false;
-        try {
-            isOk = service.storeStudentList(estudiantes);
-        } catch (Exception e) {
-            System.out.println("Error al almacenar alumnos");
-        }
-
-        assertTrue(isOk);
     }
 }

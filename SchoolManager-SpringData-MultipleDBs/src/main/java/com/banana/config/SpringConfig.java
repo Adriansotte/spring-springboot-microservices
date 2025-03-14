@@ -6,14 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@Import({PersistenceConfigMysql.class, PersistenceConfigMysql2.class, PersistenceConfigH2.class})
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = {"com.banana.persistence", "com.banana.services"})
-@EntityScan("com.banana.models")
-@EnableJpaRepositories("com.banana.persistence")
-@EnableTransactionManagement
+//@EntityScan("com.banana.models")
+//@EnableJpaRepositories("com.banana.persistence")
 public class SpringConfig {
 
 }
