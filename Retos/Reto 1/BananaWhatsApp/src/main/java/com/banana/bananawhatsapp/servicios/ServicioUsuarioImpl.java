@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ServicioUsuarioImpl implements IServicioUsuarios{
@@ -52,9 +53,6 @@ public class ServicioUsuarioImpl implements IServicioUsuarios{
 
     @Override
     public Set<Usuario> obtenerPosiblesDesinatarios(Usuario usuario, int max) throws UsuarioException {
-        List<Usuario> listaUsuarios = ur.findAll();
-        //for(numero : max) {
-        //}
-        return (Set<Usuario>) listaUsuarios;
+        return ur.obtenerPosiblesDestinatarios(usuario.getId(), max);
     }
 }

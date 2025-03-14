@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface IMensajeRepository extends JpaRepository<Mensaje, Integer> {
+//Extends JPA deleted
+public interface IMensajeRepository {
     public Mensaje crear(Mensaje mensaje) throws SQLException;
 
     public List<Mensaje> obtener(Usuario usuario) throws SQLException;
