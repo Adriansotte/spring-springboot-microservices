@@ -1,27 +1,35 @@
 package com.myshoppingcart.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@AllArgsConstructor
+import javax.persistence.*;
+
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
+@Entity
+@Table(name = "producto")
 public class Producto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer mid;
-    private String codigo;
-    private String marca;
-    private String tipo;
-    private double precio;
-    private int existencias;
 
-    public Producto(Integer id, String cod, double prec) {
-        this.mid = id;
-        this.codigo = cod;
-        this.precio = prec;
-    }
+    @Column(name = "codigo")
+    private String codigo;
+
+    @Column(name = "marca")
+    private String marca;
+
+    @Column(name = "tipo")
+    private String tipo;
+
+    @Column(name = "precio")
+    private double precio;
+
+    @Column(name = "existencias")
+    private int existencias;
 
 }

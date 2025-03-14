@@ -5,11 +5,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = {"com.banana.persistence", "com.banana.services"})
-@EntityScan("com.banana.models")
+@EntityScan(basePackages = "com.banana.models")
+@EnableJpaRepositories(basePackages = "com.banana.persistence")
 public class SpringConfig {
-
 }
